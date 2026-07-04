@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gym.gymmanagementsystem.mapper.EmployeeMapper">
+    <select id="selectTotalCount" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM employee
+    </select>
+
+    <select id="findAll" resultType="employee">
+        SELECT *
+        FROM employee
+    </select>
+
+    <insert id="insertEmployee" parameterType="employee">
+        INSERT INTO employee(employee_account,employee_name,employee_gender,employee_age,entry_time,staff,employee_message)
+        VALUES(#{employeeAccount},#{employeeName},#{employeeGender},#{employeeAge},#{entryTime},#{staff},#{employeeMessage})
+    </insert>
+
+    <delete id="deleteByEmployeeAccount" parameterType="java.lang.Integer">
+        DELETE FROM employee
+        WHERE employee_account=#{employeeAccount}
+    </delete>
+
+    <update id="updateMemberByEmployeeAccount" parameterType="employee">
+        UPDATE employee
+        SET employee_account=#{employeeAccount},
+        employee_name=#{employeeName},
+        employee_gender=#{employeeGender},
+        employee_age=#{employeeAge},
+        entry_time=#{entryTime},
+        staff=#{staff},
+        employee_message=#{employeeMessage}
+        WHERE employee_account=#{employeeAccount}
+    </update>
+
+    <select id="selectByEmployeeAccount" resultType="employee">
+        SELECT *
+        FROM employee
+        WHERE employee_account=#{employeeAccount}
+    </select>
+
+</mapper>
